@@ -1,0 +1,11 @@
+            <ul class="breadcrumb">
+                <% if(breadcrumbs){ %>
+                    <% for(var i=0; i<breadcrumbs.length; i++){ %>
+                        <% if(i == (breadcrumbs.length - 1)){ %>
+                            <li><span class="active"><%= breadcrumbs[i].name %></span></li>
+                        <%} else {%>
+                            <li><a href="<%= breadcrumbs[i].url %>"><%= breadcrumbs[i].name %></a></li>
+                        <% } %>
+                    <% } %>
+                <% } %>
+            </ul>

@@ -1,0 +1,73 @@
+﻿
+<!DOCTYPE html>
+
+<html lang="en">
+   <head>
+      <meta charset = "utf-8">
+	<link href="/assets/style/111.css" rel="stylesheet" type="text/css" />
+      <title>MyItems</title>
+   </head>
+
+   <body>
+     <% include partials/header.ejs %>
+     <% include partials/topnav.ejs %>
+
+
+     <article>
+          <% include partials/sidenav.ejs %>
+        <section class="content">
+          <% include partials/breadcrum.ejs %>
+         <h2>Nikki's favourites</h2>
+         <div class="content1">
+            <table>
+  <tr>
+	<th> </th>
+    <th>product name</th>
+    <th >category</th>
+    <th >My Rating</th>
+    <th >Made it</th>
+	<th > </th>
+	<th > </th>
+  </tr>
+  <% if(data.user.userItems !== undefined){%>
+  <% for(i=0; i< data.user.userItems.length; i++){ %>
+  <tr>
+<td><img src="/assets/images/tick.png" alt="" class="my"/></td>
+<td><%=data.user.userItems[i]._item._itemName%></td>
+<td><%=data.user.userItems[i]._item._catalogCategory%></td>
+    <td><%=data.user.userItems[i]._item._rating%></td>
+
+    <td>
+      <input <%=data.user.userItems[i]._readit%> type="checkbox" <%if(data.user.userItems[i]._readit == true){%> checked <%}%>>
+    </td>
+    <td>
+      <form action="/feedback/<%=data.user.userItems[i]._item._itemCode%>" method="GET">
+        <button class="update_action" type="submit">Update</button>
+      </form>
+    </td>
+    <td>
+    <form action="/profile/<%=data.user.userItems[i]._item._itemCode%>/delete" method="POST">
+        <button type="submit">Delete</button>
+    </form>
+  </td>
+
+  </tr>
+  <%}%>
+  <%}%>
+</table>
+<p><img src="/assets/images/tick.png" alt="" class="my"/>This tick mark denotes the item is selected</p>
+</div>
+<div class="continue">
+<button class="continue_action" type="button">Continue Browsing</button>
+</div>         </section>
+      </article>
+
+      <aside>
+
+      </aside>
+
+      <% include partials/footer.ejs %>
+
+   <script src="/assets/script/continuebrowsing.js" type="text/javascript"></script>
+   </body>
+   </html>

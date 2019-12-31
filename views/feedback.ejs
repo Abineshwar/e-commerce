@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+   <head>
+      <meta charset = "utf-8">
+	<link href="/assets/style/111.css" rel="stylesheet" type="text/css" />
+      <title>Home</title>
+   </head>
+
+   <body>
+      <% include partials/header.ejs %>
+      <% include partials/topnav.ejs %>
+
+
+      <article>
+           <% include partials/sidenav.ejs %>
+         <section class="content">
+           <% include partials/breadcrum.ejs %>
+           <div>
+
+                 <img class="img1" src="<%= data.item._item._imageURL %>" alt="logo">
+                 <h2> Feedback for <%=data.item._item._itemName%> </h2>
+        	 </div>
+           <form action="/profile/<%=data.item._item._itemCode%>/rating" method="POST">
+
+             <select name="rating">
+               <option value="1" <% if(data.item._item._rating == 1){%>selected<%}%>>1</option>
+               <option value="2" <% if(data.item._item._rating == 2){%>selected<%}%>>2</option>
+               <option value="3" <% if(data.item._item._rating == 3){%>selected<%}%>>3</option>
+               <option value="4" <% if(data.item._item._rating == 4){%>selected<%}%>>4</option>
+               <option value="5" <% if(data.item._item._rating == 5){%>selected<%}%>>5</option>
+             </select>
+             <input type="radio" name="readit" <% if(data.item._item._readit == true){%>checked="checked"<%}%> value="true"> Yes
+             <input type="radio" name="readit" <% if(data.item._item._readit == false){%>checked="checked"<%}%> value="false"> No<br>
+             <button type="submit"> Confirm Rating </button>
+
+
+           </form>
+
+
+
+
+
+        <p><%=data.item._item._description%></p>
+        <div class="continue">
+        <button class="continue_action" type="button">Continue Browsing</button>
+        </div>
+
+         </section>
+      </article>
+
+      <aside>
+
+      </aside>
+       <% include partials/footer.ejs %>
+<script src="/assets/script/continuebrowsing.js" type="text/javascript"></script>
+   </body>
+</html>

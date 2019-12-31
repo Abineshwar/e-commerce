@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head >
+     <meta charset ="utf-8">
+	   <link href="/assets/style/111.css" rel="stylesheet" type="text/css" />
+     <title><%= data.pageTitle %></title>
+   </head>
+   <body>
+     <% include partials/header.ejs %>
+     <% include partials/topnav.ejs %>
+     <article>
+       <% include partials/sidenav.ejs %>
+        <section class="content">
+
+          <div>
+
+            <h2>Welcome!!!!</h2>
+            <h3>please enter your username and password to sign in</h3>
+            <form class="login" method="POST" action="/profile/login">
+                <div class="error-div">
+                <%if(typeof(errors) !== 'undefined'){%>
+                    <%for(i=0; i<errors.length; i++){%>
+                        <p class="error">Error : <b><%= errors[i].msg%></b></p>
+                    <%}%>
+                <%}%>
+                </div>
+                <input type="text" name="username" placeholder="Username"><br><br>
+                <input type="password" name="password" placeholder="Password"><br><br>
+                <button type="submit">Login</button>
+            </form>
+          </div>
+
+
+
+        </section>
+      </article>
+      <% include partials/footer.ejs %>
+     </body>
+</html>

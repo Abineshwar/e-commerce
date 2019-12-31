@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head >
+     <meta charset ="utf-8">
+	   <link href="/assets/style/111.css" rel="stylesheet" type="text/css" />
+     <title>Item</title>
+   </head>
+   <body>
+     <% include partials/header.ejs %>
+     <% include partials/topnav.ejs %>
+     <article>
+       <% include partials/sidenav.ejs %>
+        <section class="content">
+          <% include partials/breadcrum.ejs %>
+          <div>
+            <img class="img1" src="<%= data.item._imageURL %>" alt="logo">
+            <h2><%= data.item.itemName %> </h2>
+          </div>
+          <div class="rate">
+            <% for(i=0; i<data.item._rating; i++){%>
+            <input type="radio" id="star<%= i %>" name="rate" value="1" checked />
+            <label for="star<%= i%>" title="text"><%= data.item._rating%></label>
+            <%}%>
+          </div>
+          <div class="content2">
+            <form action='/profile/<%= data.item._itemCode %>/save' method ="POST">
+            <button type="submit"> Save it</button>
+          </form>
+
+            <button>Rate it</button>
+            <p><%= data.item.description %></p>
+
+              <button class="continue_action" type="button">Continue Browsing</button>
+
+          </div>
+        </section>
+      </article>
+      <% include partials/footer.ejs %>
+      <script src="/assets/script/save.js"></script>
+      <script src="/assets/script/continuebrowsing.js"></script>
+   </body>
+</html>
